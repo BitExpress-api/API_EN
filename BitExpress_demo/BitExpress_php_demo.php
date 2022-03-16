@@ -15,14 +15,14 @@ class BitExpress{
     private $app_id = "41043343"; //APPID)<Distributed by BitExpress, obtained in app -> APIconfiguration (pc merchant area-> API CONFIG)>
     private $mch_no = "9357"; // (UID)<Distributed by BitExpress, obtained in app -> APIconfiguration (pc merchant area-> API CONFIG)>
     private $app_key ='73A8946D4ED1AD34ADA3F503601D3833';//Key
-    private $into_url = "http://merchant-api.bitexpress.me/api/recharge/check/v2";
-	private $rmb_price_url = "http://merchant-api.bitexpress.me/api/recharge/convert/v1";
-    private $order_query_url = "http://merchant-api.bitexpress.me/api/recharge/order/query";
-	private $withdrawal_url = "http://merchant-api.bitexpress.me/api/recharge/customer/withdrawal";
-    private $withdrawal_history_url = "http://merchant-api.bitexpress.me/api/recharge/customer/withdrawal/history";
-    private $withdrawal_delete_url = "http://merchant-api.bitexpress.me/api/recharge/customer/withdrawal/delete";
+    private $into_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/check/v2";
+	private $rmb_price_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/convert/v1";
+    private $order_query_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/order/query";
+	private $withdrawal_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/customer/withdrawal";
+    private $withdrawal_history_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/customer/withdrawal/history";
+    private $withdrawal_delete_url = "https://merchant-api-ssl.bitexpress.me/api/recharge/customer/withdrawal/delete";
 
-//curl -X GET -H "content-type:application/json" -H "access_key:8A42FADDD2397F4841B1F85C2C13094CAB152151" -H "app_id:41043343" http://merchant-api.bitexpress.me/api/recharge/convert/v1?timestamp=1609385362&p1=9357&p2=CNY&p3=695
+//curl -X GET -H "content-type:application/json" -H "access_key:8A42FADDD2397F4841B1F85C2C13094CAB152151" -H "app_id:41043343" https://merchant-api-ssl.bitexpress.me/api/recharge/convert/v1?timestamp=1609385362&p1=9357&p2=CNY&p3=695
 
     /**
      * Merchants deposit digital currency quotation (RMB)
@@ -30,7 +30,7 @@ class BitExpress{
      * @param $amount
      */
     public function rmbPrice($closeCurrency,$amount){
-        //curl -X GET -H "content-type:application/json" -H "access_key:8A42FADDD2397F4841B1F85C2C13094CAB152151" -H "app_id:41043343" http://merchant-api.bitexpress.me/api/recharge/convert/v1?timestamp=1609385362&p1=9357&p2=CNY&p3=695
+        //curl -X GET -H "content-type:application/json" -H "access_key:8A42FADDD2397F4841B1F85C2C13094CAB152151" -H "app_id:41043343" https://merchant-api-ssl.bitexpress.me/api/recharge/convert/v1?timestamp=1609385362&p1=9357&p2=CNY&p3=695
 		$timestamp = time();
        $param = array(
            'p1' => $this->mch_no,
@@ -67,7 +67,7 @@ class BitExpress{
         $url .= '?p1='.$param['p1'].'&p2='.$param['p2'].'&p3='.$param['p3'].'&timestamp='.$param['timestamp'];
         $rlt = $this->httpGET($url,$str);
         var_dump($rlt);
-        //{"code":200,"data":{"url":"http://pay.bitexpress.me?depositId=12"},"message":"success"}
+        //{"code":200,"data":{"url":"https://pay.bitexpress.me?depositId=12"},"message":"success"}
 
     }
 
@@ -194,7 +194,7 @@ class BitExpress{
      */
     function httpGET($url,$str) {
 
-        echo 'url:'.$url."</br>";    //Request url and parameters：http://merchant-api.bitexpress.me/api/recharge/check/v2?p1=100&p2=11082429&p3=1553155910&timestamp=1553155910
+        echo 'url:'.$url."</br>";    //Request url and parameters：https://merchant-api-ssl.bitexpress.me/api/recharge/check/v2?p1=100&p2=11082429&p3=1553155910&timestamp=1553155910
 
         echo 'str:'.$str."</br>";   //String before encryption：100&11082429&1553155910&1553155910
         if(empty($str)){
