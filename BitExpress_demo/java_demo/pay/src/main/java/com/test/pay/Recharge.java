@@ -33,10 +33,11 @@ public class Recharge extends HttpServlet {
         String p2 = Constant.merchant_no;
         String p3 = "PAY"+timestamp;
         String p4 = request.getParameter("p4");
+        String p5 = request.getParameter("p5");
         String params = p1+"&"+p2+"&"+p3+"&"+timestamp;
         String access_key = HMACSHA1.hamcsha1(params.getBytes(), Constant.key.getBytes());
 
-        String pay_url = Constant.URL_ + "/api/recharge/check/v2?p1="+p1+"&p2="+p2+"&p3="+p3+"&p4="+p4+"&timestamp="+timestamp;
+        String pay_url = Constant.URL_ + "/api/recharge/check/v2?p1="+p1+"&p2="+p2+"&p3="+p3+"&p4="+p4+"&p5="+p5+"&timestamp="+timestamp;
         Map<String, String> heads = new HashMap<>();
         heads.put("content-type", "application/json");
         heads.put("access_key", access_key);
