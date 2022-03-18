@@ -2,7 +2,7 @@
 
 $pay = new BitExpress;
 $pay->rmbPrice('CNY',695); //Merchants deposit digital currency quotation (RMB)
-//$pay -> pay('CNY',100);  //Get deposit link
+//$pay -> pay('CNY',100,'Lewis');  //Get deposit link
 //$pay -> orderQuery('PAY1600328923');  //Query deposit order status
 //$pay -> withdrawal();   //Apply for a fiat currency withdrawal
 //$pay -> withdrawalHistory(); //fiat currency withdrawal history
@@ -52,19 +52,20 @@ class BitExpress{
      * @param $closeCurrency
      * @param $amount
      */
-    public function pay($closeCurrency,$amount){
+    public function pay($closeCurrency,$amount,$realName){
 		$orderNo = time().rand(1,100);
 		$timestamp = time();
        $param = array(
            'p1' => $amount,
            'p2' => $this->mch_no,
            'p3' => $orderNo,
-		   'p4' => $closeCurrency,
+	   'p4' => $closeCurrency,
+	   'p5' => $realName,
            'timestamp' => $timestamp
        );
 	   $str = $amount.'&'.$this->mch_no.'&'.$orderNo.'&'.$timestamp;
         $url = $this->into_url;
-        $url .= '?p1='.$param['p1'].'&p2='.$param['p2'].'&p3='.$param['p3'].'&timestamp='.$param['timestamp'];
+        $url .= '?p1='.$param['p1'].'&p2='.$param['p2'].'&p3='.$param['p3'].'&p4='.$param['p4'].'&p5='.$param['p5'].'&timestamp='.$param['timestamp'];
         $rlt = $this->httpGET($url,$str);
         var_dump($rlt);
         //{"code":200,"data":{"url":"https://pay.bitexpress.me?depositId=12"},"message":"success"}
