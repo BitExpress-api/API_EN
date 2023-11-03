@@ -12,6 +12,7 @@
 #### 3.5 &nbsp; Deposit into your own system Digital currency deposit
 #### 3.6 &nbsp; Asynchronous notification of merchant deposit (callback)
 #### 3.7 &nbsp; Query deposit order status
+#### 3.8 &nbsp; Asset details
 ## 4 &nbsp; Withdrawal Related Interface
 #### 4.1 &nbsp; Apply for a fiat currency withdrawal
 #### 4.2 &nbsp; Withdrawal history
